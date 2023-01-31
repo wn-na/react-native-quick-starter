@@ -9,7 +9,9 @@
  */
 
 import React, {type PropsWithChildren} from 'react';
+import CodePush from 'react-native-code-push';
 import {
+  Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -26,6 +28,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Config from './Config';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -116,5 +119,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 });
+const codePushOptions = {
+  checkFrequency: Platform.select({
+    ios: CodePush.CheckFrequency.ON_APP_RESUME,
+    android: CodePush.CheckFrequency.ON_APP_START,
+  }),
+  installMode: CodePush.InstallMode.IMMEDIATE,
+};
 
-export default App;
+export default Config.codepush ? CodePush(codePushOptions)(App) : App;
