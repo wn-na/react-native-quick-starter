@@ -7,7 +7,16 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "codepush:release": "appcenter codepush release-react -a {user name}/{app name} -d Production",
+    "codepush:debug": "appcenter codepush release-react -a {user name}/{app name} -d Debug",
+    "codepush:release:momentary": "appcenter codepush release-react -a {user name}/{app name} -d Production -m",
+    "codepush:debug:momentary": "appcenter codepush release-react -a {user name}/{app name} -d Debug -m",
+    "android:release": "npx react-native run-android --variant=release",
+    "clean": "rm -rf node_modules; rm -rf ios/build; rm -rf ios/Pods; rm -rf ios/Podfile.lock",
+    "clean:android": "./android/gradlew clean",
+    "build:android-debug": "./android/gradlew assembleDebug",
+    "build:android-release": "./android/gradlew assembleRelease"
   },
   "dependencies": {
     "appcenter-cli": "^2.13.1",
