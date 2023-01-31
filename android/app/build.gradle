@@ -224,6 +224,11 @@ android {
             signingConfig signingConfigs.debug
             resValue "string", "CodePushDeploymentKey", CODEPUSH_KEY_ANDROID_DEBUG
         }
+        releaseStaging {
+          initWith release
+          resValue "string", "CodePushDeploymentKey", CODEPUSH_KEY_ANDROID_STAGING
+          matchingFallbacks = ['release']
+        }
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
@@ -273,11 +278,12 @@ dependencies {
     }
 
     if (enableHermes) {
+        def hermesPath = "../../node_modules/hermes-engine/android/";
+        releaseStagingImplementation files(hermesPath + "hermes-release.aar")
         //noinspection GradleDynamicVersion
         implementation("com.facebook.react:hermes-engine:+") { // From node_modules
             exclude group:'com.facebook.fbjni'
         }
-        releaseStagingImplementation files(hermesPath + "hermes-release.aar")
     } else {
         implementation jscFlavor
     }
