@@ -22,7 +22,8 @@
     "appcenter-cli": "^2.13.1",
     "react": "18.1.0",
     "react-native": "0.70.6",
-    "react-native-code-push": "^7.1.0"
+    "react-native-code-push": "^7.1.0",
+    "react-native-fast-image": "^8.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
