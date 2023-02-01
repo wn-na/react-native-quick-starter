@@ -10,15 +10,17 @@
  */
 
 import { useNetInfo } from "@react-native-community/netinfo";
-import React, { useEffect, type PropsWithChildren } from "react";
-import { Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from "react-native";
+import React, { useEffect, useState, type PropsWithChildren } from "react";
+import { Appearance, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from "react-native";
 import CodePush from "react-native-code-push";
 
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions } from "react-native/Libraries/NewAppScreen";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
+import { ThemeProvider } from "styled-components";
 import { useNetInfoHook } from "~/hooks/netinfoHooks";
 import axiosMockInstance, { axiosMockAdapterInstance } from "~/network/mock";
+import theme from "~/styles/theme";
 import Config from "./Config";
 
 axiosMockAdapterInstance.onGet("api/health_check").reply(200, {
@@ -80,6 +82,14 @@ const Section: React.FC<
 const App = () => {
 	const isDarkMode = useColorScheme() === "dark";
 
+	const [appTheme, setAppTheme] = useState<keyof typeof theme>("light");
+
+	useEffect(() => {
+		Appearance.addChangeListener(({ colorScheme }) => {
+			setAppTheme(Appearance.getColorScheme() === "dark" ? "dark" : "light");
+		});
+	}, []);
+
 	const queryClient = new QueryClient();
 	/**
 	 * if you want debug use this
@@ -101,29 +111,34 @@ const App = () => {
 	return (
 		<RecoilRoot>
 			<QueryClientProvider client={queryClient}>
-				<SafeAreaView style={backgroundStyle}>
-					<StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={backgroundStyle.backgroundColor} />
-					<ScrollView contentInsetAdjustmentBehavior='automatic' style={backgroundStyle}>
-						<Header />
-						<View
-							style={{
-								backgroundColor: isDarkMode ? Colors.black : Colors.white
-							}}
-						>
-							<Section title='Step One'>
-								Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and then come back to see your edits.
-							</Section>
-							<Section title='See Your Changes'>
-								<ReloadInstructions />
-							</Section>
-							<Section title='Debug'>
-								<DebugInstructions />
-							</Section>
-							<Section title='Learn More'>Read the docs to discover what to do next:</Section>
-							<LearnMoreLinks />
-						</View>
-					</ScrollView>
-				</SafeAreaView>
+				<ThemeProvider theme={theme[appTheme]}>
+					<SafeAreaView style={backgroundStyle}>
+						<StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={backgroundStyle.backgroundColor} />
+						<ScrollView contentInsetAdjustmentBehavior='automatic' style={backgroundStyle}>
+							<Header />
+							<View
+								style={{
+									margin: theme[appTheme].margin.XL,
+									backgroundColor: isDarkMode ? Colors.black : Colors.white
+								}}
+							>
+								<Section title='Step One'>
+									<Text style={{ color: "red", ...theme[appTheme].fontFamily["Black"] }}>Shake</Text>
+									<Text style={{ color: "blue", ...theme[appTheme].fontFamily.ExtraLight }}>Shake</Text>
+									Shake
+								</Section>
+								<Section title='See Your Changes'>
+									<ReloadInstructions />
+								</Section>
+								<Section title='Debug'>
+									<DebugInstructions />
+								</Section>
+								<Section title='Learn More'>Read the docs to discover what to do next:</Section>
+								<LearnMoreLinks />
+							</View>
+						</ScrollView>
+					</SafeAreaView>
+				</ThemeProvider>
 			</QueryClientProvider>
 		</RecoilRoot>
 	);
