@@ -31,6 +31,7 @@
 		"react-native": "0.70.6",
 		"react-native-asset": "^2.0.1",
 		"react-native-code-push": "^7.1.0",
+		"react-native-extra-dimensions-android": "^1.2.5",
 		"react-native-fast-image": "^8.6.3",
 		"react-native-gesture-handler": "^2.9.0",
 		"react-native-modal": "^13.0.1",
