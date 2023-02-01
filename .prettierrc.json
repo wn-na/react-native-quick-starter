@@ -1,0 +1,24 @@
+{
+	"bracketSpacing": true,
+	"bracketSameLine": false,
+	"jsxSingleQuote": true,
+	"singleQuote": false,
+	"trailingComma": "none",
+	"arrowParens": "always",
+	"tabWidth": 4,
+	"printWidth": 140,
+	"semi": true,
+	"useTabs": true,
+	"proseWrap": "never",
+	"htmlWhitespaceSensitivity": "css",
+	"quoteProps": "as-needed",
+	"endOfLine": "auto",
+	"overrides": [
+		{
+			"files": "*.json",
+			"options": {
+				"printWidth": 140
+			}
+		}
+	]
+}

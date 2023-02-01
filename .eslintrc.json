@@ -1,0 +1,58 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+
+	"extends": ["prettier", "eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "google"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"plugins": ["react", "@typescript-eslint", "prettier"],
+	"rules": {
+		"prettier/prettier": "error",
+		"@typescript-eslint/ban-ts-comment": "off",
+		"@typescript-eslint/no-explicit-any": ["off"],
+		"@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
+		"@typescript-eslint/no-var-requires": "off",
+		"@typescript-eslint/no-shadow": ["error"],
+		"no-shadow": "off",
+		"comma-dangle": ["error", "only-multiline", { "functions": "never" }],
+		"curly": ["error", "all"],
+		"func-names": "off",
+		"indent": "off",
+		"linebreak-style": "off",
+		"max-len": ["error", { "code": 140 }],
+		"no-mixed-spaces-and-tabs": "off",
+		"no-tabs": ["error", { "allowIndentationTabs": true }],
+		"new-cap": "off",
+		"no-underscore-dangle": "off",
+		"object-curly-spacing": ["error", "always"],
+		"quotes": ["error", "double"],
+		"react/prop-types": "off",
+		"require-jsdoc": "off",
+		"valid-jsdoc": "off",
+		"no-unneeded-ternary": "error",
+		"no-unexpected-multiline": "error",
+		"no-extra-parens": "off",
+		"no-invalid-this": "off",
+		"operator-linebreak": ["error", "after", { "overrides": { "?": "ignore", ":": "ignore" } }],
+		"quote-props": ["error", "as-needed", { "keywords": true }]
+	},
+	"overrides": [
+		{
+			"files": ["*.tsx"],
+			"rules": {
+				"require-jsdoc": "off",
+				"react/display-name": "off"
+			}
+		}
+	]
+}
