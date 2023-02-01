@@ -7,6 +7,7 @@
 				"rootPathPrefix": "~",
 				"rootPathSuffix": "src"
 			}
-		]
+		],
+		["babel-plugin-styled-components"]
 	]
 }
