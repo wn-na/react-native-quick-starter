@@ -14,6 +14,8 @@ import { Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useCol
 import CodePush from "react-native-code-push";
 
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions } from "react-native/Libraries/NewAppScreen";
+import { RecoilRoot } from "recoil";
+import { useNetInfoHook } from "~/hooks/netinfoHooks";
 import axiosMockInstance, { axiosMockAdapterInstance } from "~/network/mock";
 import Config from "./Config";
 
@@ -32,18 +34,19 @@ const Section: React.FC<
 	}>
 > = ({ children, title }) => {
 	const isDarkMode = useColorScheme() === "dark";
-	const netInfo = useNetInfo();
+
+	const test = useNetInfo();
+	const { netInfo, setNetInfo } = useNetInfoHook();
 	useEffect(() => {
-		axiosMockInstance
-			.get("api/health_check")
-			.then((res) => {
-				console.log("TEST", res.data);
-			})
-			.catch(console.warn);
-	}, []);
+		if (test) {
+			setNetInfo(test);
+		}
+	}, [test]);
 
 	useEffect(() => {
-		// console.log(netInfo);
+		if (netInfo) {
+			console.log(netInfo);
+		}
 	}, [netInfo]);
 
 	return (
@@ -78,31 +81,41 @@ const App = () => {
 	const backgroundStyle = {
 		backgroundColor: isDarkMode ? Colors.darker : Colors.lighter
 	};
+	useEffect(() => {
+		axiosMockInstance
+			.get("api/health_check")
+			.then((res) => {
+				console.log("TEST", res.data);
+			})
+			.catch(console.warn);
+	}, []);
 
 	return (
-		<SafeAreaView style={backgroundStyle}>
-			<StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={backgroundStyle.backgroundColor} />
-			<ScrollView contentInsetAdjustmentBehavior='automatic' style={backgroundStyle}>
-				<Header />
-				<View
-					style={{
-						backgroundColor: isDarkMode ? Colors.black : Colors.white
-					}}
-				>
-					<Section title='Step One'>
-						Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and then come back to see your edits.
-					</Section>
-					<Section title='See Your Changes'>
-						<ReloadInstructions />
-					</Section>
-					<Section title='Debug'>
-						<DebugInstructions />
-					</Section>
-					<Section title='Learn More'>Read the docs to discover what to do next:</Section>
-					<LearnMoreLinks />
-				</View>
-			</ScrollView>
-		</SafeAreaView>
+		<RecoilRoot>
+			<SafeAreaView style={backgroundStyle}>
+				<StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={backgroundStyle.backgroundColor} />
+				<ScrollView contentInsetAdjustmentBehavior='automatic' style={backgroundStyle}>
+					<Header />
+					<View
+						style={{
+							backgroundColor: isDarkMode ? Colors.black : Colors.white
+						}}
+					>
+						<Section title='Step One'>
+							Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and then come back to see your edits.
+						</Section>
+						<Section title='See Your Changes'>
+							<ReloadInstructions />
+						</Section>
+						<Section title='Debug'>
+							<DebugInstructions />
+						</Section>
+						<Section title='Learn More'>Read the docs to discover what to do next:</Section>
+						<LearnMoreLinks />
+					</View>
+				</ScrollView>
+			</SafeAreaView>
+		</RecoilRoot>
 	);
 };
 
