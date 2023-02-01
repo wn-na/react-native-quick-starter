@@ -8,13 +8,23 @@
  * @format
  */
 
+import { useNetInfo } from "@react-native-community/netinfo";
 import React, { useEffect, type PropsWithChildren } from "react";
 import { Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from "react-native";
 import CodePush from "react-native-code-push";
 
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions } from "react-native/Libraries/NewAppScreen";
-import { axiosInstance } from "~/network/axios";
+import axiosMockInstance, { axiosMockAdapterInstance } from "~/network/mock";
 import Config from "./Config";
+
+axiosMockAdapterInstance.onGet("api/health_check").reply(200, {
+	response: {
+		health: {
+			server: true,
+			database: true
+		}
+	}
+});
 
 const Section: React.FC<
 	PropsWithChildren<{
@@ -22,14 +32,19 @@ const Section: React.FC<
 	}>
 > = ({ children, title }) => {
 	const isDarkMode = useColorScheme() === "dark";
+	const netInfo = useNetInfo();
 	useEffect(() => {
-		axiosInstance
+		axiosMockInstance
 			.get("api/health_check")
 			.then((res) => {
-				console.table(res.data);
+				console.log("TEST", res.data);
 			})
 			.catch(console.warn);
 	}, []);
+
+	useEffect(() => {
+		// console.log(netInfo);
+	}, [netInfo]);
 
 	return (
 		<View style={styles.sectionContainer}>
