@@ -31,6 +31,6 @@ const defaultTheme = {
 };
 
 export default {
-	light: { ...defaultTheme, colors: lightColors },
-	dark: { ...defaultTheme, colors: darkColors }
+	light: { ...defaultTheme, color: lightColors },
+	dark: { ...defaultTheme, color: darkColors }
 };

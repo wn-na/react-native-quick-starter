@@ -13,7 +13,7 @@ const FONT_WEIGHT = {
 } as const;
 type FONT_WEIGHT = (typeof FONT_WEIGHT)[keyof typeof FONT_WEIGHT];
 
-export const fontFamily: Record<FONT_WEIGHT, Pick<TextStyle, "fontFamily" | "fontWeight">> = {
+export const fontFamily: Record<FONT_WEIGHT, Required<Pick<TextStyle, "fontFamily" | "fontWeight">>> = {
 	Thin: { fontFamily: "Pretendard-Thin", fontWeight: "100" },
 	ExtraLight: { fontFamily: "Pretendard-ExtraLight", fontWeight: "200" },
 	Light: { fontFamily: "Pretendard-Light", fontWeight: "300" },
