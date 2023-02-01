@@ -1,57 +1,68 @@
 {
-  "name": "MyApp",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "codepush:release": "appcenter codepush release-react -a {user name}/{app name} -d Production",
-    "codepush:debug": "appcenter codepush release-react -a {user name}/{app name} -d Debug",
-    "codepush:release:momentary": "appcenter codepush release-react -a {user name}/{app name} -d Production -m",
-    "codepush:debug:momentary": "appcenter codepush release-react -a {user name}/{app name} -d Debug -m",
-    "android:release": "npx react-native run-android --variant=release",
-    "clean": "rm -rf node_modules; rm -rf ios/build; rm -rf ios/Pods; rm -rf ios/Podfile.lock",
-    "clean:android": "cd android && ./gradlew clean",
-    "build:android-debug": "cd android && ./gradlew assembleDebug",
-    "build:android-release": "cd android && ./gradlew assembleRelease"
-  },
-  "dependencies": {
-    "appcenter-cli": "^2.13.1",
-    "react": "18.1.0",
-    "react-native": "0.70.6",
-    "react-native-code-push": "^7.1.0",
-    "react-native-fast-image": "^8.6.3"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/runtime": "^7.12.5",
-    "@react-native-community/eslint-config": "^2.0.0",
-    "@tsconfig/react-native": "^2.0.2",
-    "@types/jest": "^26.0.23",
-    "@types/react": "^18.0.21",
-    "@types/react-native": "^0.70.6",
-    "@types/react-test-renderer": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
-    "babel-jest": "^26.6.3",
-    "eslint": "^7.32.0",
-    "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "0.72.3",
-    "react-test-renderer": "18.1.0",
-    "typescript": "^4.8.3"
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  }
+	"name": "MyApp",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"android": "react-native run-android",
+		"ios": "react-native run-ios",
+		"start": "react-native start",
+		"test": "jest",
+		"lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+		"codepush:release": "appcenter codepush release-react -a {user name}/{app name} -d Production",
+		"codepush:debug": "appcenter codepush release-react -a {user name}/{app name} -d Debug",
+		"codepush:release:momentary": "appcenter codepush release-react -a {user name}/{app name} -d Production -m",
+		"codepush:debug:momentary": "appcenter codepush release-react -a {user name}/{app name} -d Debug -m",
+		"android:release": "npx react-native run-android --variant=release",
+		"clean": "rm -rf node_modules; rm -rf ios/build; rm -rf ios/Pods; rm -rf ios/Podfile.lock",
+		"clean:android": "cd android && ./gradlew clean",
+		"build:android-debug": "cd android && ./gradlew assembleDebug",
+		"build:android-release": "cd android && ./gradlew assembleRelease"
+	},
+	"dependencies": {
+		"appcenter-cli": "^2.13.1",
+		"react": "18.1.0",
+		"react-native": "0.70.6",
+		"react-native-code-push": "^7.1.0",
+		"react-native-fast-image": "^8.6.3"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.12.9",
+		"@babel/runtime": "^7.12.5",
+		"@commitlint/config-conventional": "^17.4.2",
+		"@react-native-community/eslint-config": "^2.0.0",
+		"@tsconfig/react-native": "^2.0.2",
+		"@types/jest": "^26.0.23",
+		"@types/react": "^18.0.21",
+		"@types/react-native": "^0.70.6",
+		"@types/react-test-renderer": "^18.0.0",
+		"@typescript-eslint/eslint-plugin": "^5.37.0",
+		"@typescript-eslint/parser": "^5.37.0",
+		"babel-jest": "^26.6.3",
+		"commitlint": "^17.4.2",
+		"eslint": "^7.32.0",
+		"eslint-config-google": "^0.14.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"jest": "^26.6.3",
+		"lefthook": "^1.2.8",
+		"metro-react-native-babel-preset": "0.72.3",
+		"react-test-renderer": "18.1.0",
+		"typescript": "^4.8.3"
+	},
+	"jest": {
+		"preset": "react-native",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json",
+			"node"
+		]
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	}
 }
