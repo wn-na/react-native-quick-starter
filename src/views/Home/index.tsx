@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ThemeContext } from "styled-components";
 import { Text } from "~/component/atoms/Text";
 import axiosMockInstance, { axiosMockAdapterInstance } from "~/network/mock";
+import { useThemeStyle } from "~/styles/theme";
 
 axiosMockAdapterInstance.onGet("api/health_check").reply(200, {
 	response: {
@@ -13,10 +13,11 @@ axiosMockAdapterInstance.onGet("api/health_check").reply(200, {
 	}
 });
 
-export const Home: React.VFC = (props) => {
+export const Home: React.FC = (props) => {
 	const [mockInfo, setMockInfo] = useState<any>();
 
-	const theme = useContext(ThemeContext);
+	const theme = useThemeStyle();
+
 	useEffect(() => {
 		axiosMockInstance
 			.get("api/health_check")
@@ -35,7 +36,7 @@ export const Home: React.VFC = (props) => {
 				backgroundColor: theme.color.white
 			}}
 		>
-			{mockInfo && <Text>{JSON.stringify(mockInfo, null, "  ")}</Text>}
+			{mockInfo && <Text style={{ ...theme.fontFamily.Bold }}>{JSON.stringify(mockInfo, null, "  ")}</Text>}
 		</SafeAreaView>
 	);
 };
