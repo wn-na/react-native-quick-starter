@@ -291,6 +291,9 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
     annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
     
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.1'
+
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
         releaseStagingImplementation files(hermesPath + "hermes-release.aar")
