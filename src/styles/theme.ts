@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ThemeContext } from "styled-components";
 import { darkColors, lightColors } from "./colors";
 import { fontFamily } from "./font";
 
@@ -23,14 +25,25 @@ const margin: Record<ThemeSize, number> = {
 	XL: 20
 };
 
-const defaultTheme = {
+interface ThemeItem {
+	fontSize: typeof fontSize;
+	padding: typeof padding;
+	margin: typeof margin;
+	fontFamily: typeof fontFamily;
+	color: typeof lightColors;
+}
+
+const defaultTheme: Omit<ThemeItem, "color"> = {
 	fontSize,
 	padding,
 	margin,
 	fontFamily: fontFamily
 };
 
-export default {
-	light: { ...defaultTheme, colors: lightColors },
-	dark: { ...defaultTheme, colors: darkColors }
+const theme: Record<"light" | "dark", ThemeItem> = {
+	light: { ...defaultTheme, color: lightColors },
+	dark: { ...defaultTheme, color: darkColors }
 };
+export default theme;
+
+export const useThemeStyle = (): ThemeItem => useContext(ThemeContext);

@@ -8,6 +8,7 @@
 				"rootPathSuffix": "src"
 			}
 		],
-		["babel-plugin-styled-components"]
+		["babel-plugin-styled-components"],
+		["react-native-reanimated/plugin"]
 	]
 }
