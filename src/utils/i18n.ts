@@ -1,6 +1,7 @@
 /* eslint-disable quote-props */
 import i18n, { Callback } from "i18next";
 import { initReactI18next } from "react-i18next";
+import * as RNLocalize from "react-native-localize";
 
 import en from "@translation/en.json";
 import ko from "@translation/ko.json";
@@ -17,7 +18,7 @@ const resource = {
 i18n.use(initReactI18next).init({
 	compatibilityJSON: "v3",
 	resources: resource,
-	lng: "ko",
+	lng: RNLocalize.getLocales()?.[0]?.languageCode,
 	fallbackLng: "en",
 	debug: true,
 	keySeparator: ".",
