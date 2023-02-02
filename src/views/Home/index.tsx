@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,7 +12,7 @@ axiosMockAdapterInstance.onGet("api/health_check").reply(200, {
 	response: {
 		health: {
 			server: true,
-			database: true
+			database: false
 		}
 	}
 });
@@ -19,7 +20,7 @@ axiosMockAdapterInstance.onGet("api/health_check").reply(200, {
 export const Home: React.FC = (props) => {
 	const [mockInfo, setMockInfo] = useState<any>();
 	const theme = useThemeStyle();
-
+	const { t } = useTranslation();
 	useEffect(() => {
 		axiosMockInstance
 			.get("api/health_check")
@@ -37,8 +38,8 @@ export const Home: React.FC = (props) => {
 		value.value = withSpring(Math.random());
 	};
 	const changeTranslate = () => {
-		console.log(i18n.languages);
 		i18n.changeLanguage("en");
+		console.log(i18n.languages);
 	};
 	return (
 		<SafeAreaView
@@ -53,7 +54,7 @@ export const Home: React.FC = (props) => {
 			<Animated.View style={[{ height: 80, backgroundColor: "black", margin: 30 }, animatedStyle]} />
 			<Button title='toggle' onPress={toggle} />
 			<Button title={"translate"} onPress={changeTranslate} />
-			<Text style={{ ...theme.fontFamily.Bold }}>{i18n.t("test", { name: "asdf" })}</Text>
+			<Text style={{ ...theme.fontFamily.Bold }}>{t("test", { name: "asdf" })}</Text>
 			{mockInfo && <Animated.Text style={{ ...theme.fontFamily.Bold }}>{JSON.stringify(mockInfo, null, "  ")}</Animated.Text>}
 		</SafeAreaView>
 	);
