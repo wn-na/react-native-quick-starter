@@ -4,8 +4,16 @@
 		[
 			"babel-plugin-root-import",
 			{
-				"rootPathPrefix": "~",
-				"rootPathSuffix": "src"
+				"paths": [
+					{
+						"rootPathPrefix": "~",
+						"rootPathSuffix": "src"
+					},
+					{
+						"rootPathPrefix": "@translation",
+						"rootPathSuffix": "translation"
+					}
+				]
 			}
 		],
 		["babel-plugin-styled-components"],

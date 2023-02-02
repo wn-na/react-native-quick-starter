@@ -5,6 +5,7 @@
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"isolatedModules": true,
+		"resolveJsonModule": true,
 		"jsx": "react",
 		"lib": ["es6"],
 		"moduleResolution": "node",
@@ -14,6 +15,7 @@
 		"types": ["node", "react-native", "jest"],
 		"baseUrl": "./",
 		"paths": {
+			"@translation/*": ["translation/*"],
 			"~/*": ["src/*"]
 		},
 		"typeRoots": ["node_modules/@types"]
