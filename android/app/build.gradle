@@ -1,7 +1,15 @@
 apply plugin: "com.android.application"
 
+project.ext.envConfigFiles = [
+    debug: "env/.env.debug",
+    releaseStaging: "env/.env.staging",
+    release: "env/.env.product",    
+    anycustombuildlowercase: "env/.env.default",
+] 
+project.ext.defaultEnvFile = "env/.env.default"
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
@@ -222,11 +230,11 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
-            resValue "string", "CodePushDeploymentKey", CODEPUSH_KEY_ANDROID_DEBUG
+            resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_KEY")
         }
         releaseStaging {
           initWith release
-          resValue "string", "CodePushDeploymentKey", CODEPUSH_KEY_ANDROID_STAGING
+          resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_KEY")
           matchingFallbacks = ['release']
         }
         release {
@@ -235,7 +243,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            resValue "string", "CodePushDeploymentKey", CODEPUSH_KEY_ANDROID_RELEASE
+            resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_KEY")
         }
     }
 
