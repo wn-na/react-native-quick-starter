@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* MyAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MyAppTests.m */; };
+		04951620298D3E0800A00361 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0495161F298D3E0800A00361 /* GoogleService-Info.plist */; };
 		08254CF039FC4758B81CC728 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1FC82F196154C21999C57FB /* Pretendard-ExtraBold.otf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-MyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-MyApp.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
@@ -39,6 +40,7 @@
 		00E356EE1AD99517003FC87E /* MyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MyAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAppTests.m; sourceTree = "<group>"; };
+		0495161F298D3E0800A00361 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "MyApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04DE2AB6298D0B9E00BAB3F6 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		075F5FB0E3F4435DABB0E306 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-SemiBold.otf"; path = "../assets/fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,7 @@
 		13B07FAE1A68108700A75B9A /* MyApp */ = {
 			isa = PBXGroup;
 			children = (
+				0495161F298D3E0800A00361 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -284,6 +287,7 @@
 				3EC8D8B1FBB0493CA3216E8B /* Pretendard-Black.otf in Resources */,
 				EF4FAE98E48443B4AC5E0C23 /* Pretendard-Bold.otf in Resources */,
 				08254CF039FC4758B81CC728 /* Pretendard-ExtraBold.otf in Resources */,
+				04951620298D3E0800A00361 /* GoogleService-Info.plist in Resources */,
 				5D2B9F45D2D94FF4B5B3D98F /* Pretendard-ExtraLight.otf in Resources */,
 				49D80136FA8E46C6A65391C0 /* Pretendard-Light.otf in Resources */,
 				1DBE3CB2B7F646D5A0203835 /* Pretendard-Medium.otf in Resources */,
