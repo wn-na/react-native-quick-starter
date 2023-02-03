@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Platform } from "react-native";
+import Config from "react-native-config";
 import { getDeviceName } from "react-native-device-info";
 import { PERMISSIONS, request } from "react-native-permissions";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
@@ -60,6 +61,7 @@ export const Home: React.FC = (props) => {
 			<Animated.View style={[{ height: 80, backgroundColor: "black", margin: 30 }, animatedStyle]} />
 			<Button title='toggle' onPress={toggle} />
 			<Button title={"translate"} onPress={changeTranslate} />
+			<Text style={{ ...theme.fontFamily.Bold, color: "black" }}>{"TEST : " + JSON.stringify(Config)}</Text>
 			<Text style={{ ...theme.fontFamily.Bold, color: "black" }}>{t("test", { name: "asdf" })}</Text>
 			{mockInfo && <Animated.Text style={{ ...theme.fontFamily.Bold }}>{JSON.stringify(mockInfo, null, "  ")}</Animated.Text>}
 		</SafeAreaView>
