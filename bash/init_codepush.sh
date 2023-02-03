@@ -10,9 +10,9 @@ read -p "Enter codepush debug key: " IOS_DEBUG_CODEPUSH_KEY;
 read -p "Enter codepush release key: " IOS_RELEASE_CODEPUSH_KEY;
 echo "=========================================";
 
-sed -ri '' "s/CODEPUSH_KEY_IOS_DEBUG/$IOS_DEBUG_CODEPUSH_KEY/" ios/*/*.pbxproj
-sed -ri '' "s/CODEPUSH_KEY_IOS_RELEASE/$IOS_RELEASE_CODEPUSH_KEY/" ios/*/*.pbxproj
-sed -ri '' "s/(CODEPUSH_KEY_ANDROID_DEBUG=)/\1$ANDROID_DEBUG_CODEPUSH_KEY/" android/gradle.properties
-sed -ri '' "s/(CODEPUSH_KEY_ANDROID_STAGING=)/\1$ANDROID_STAGING_CODEPUSH_KEY/" android/gradle.properties
-sed -ri '' "s/(CODEPUSH_KEY_ANDROID_RELEASE=)/\1$ANDROID_RELEASE_CODEPUSH_KEY/" android/gradle.properties
- 
+echo "CODEPUSH_ANDROID_KEY=$ANDROID_DEBUG_CODEPUSH_KEY
+CODEPUSH_IOS_KEY=$IOS_DEBUG_CODEPUSH_KEY" > ../env/.env.debug
+echo "CODEPUSH_ANDROID_KEY=$ANDROID_STAGING_CODEPUSH_KEY
+CODEPUSH_IOS_KEY=" > ../env/.env.staging
+echo "CODEPUSH_ANDROID_KEY=$ANDROID_RELEASE_CODEPUSH_KEY
+CODEPUSH_IOS_KEY=$IOS_RELEASE_CODEPUSH_KEY" > ../env/.env.product

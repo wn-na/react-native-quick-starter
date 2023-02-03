@@ -23,3 +23,4 @@
   *;
 }
 -keep class com.google.android.gms.common.** {*;}
+-keep class com.myapp.BuildConfig { *; }
