@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button } from "react-native";
+import { Button, Platform } from "react-native";
+import { getDeviceName } from "react-native-device-info";
+import { PERMISSIONS, request } from "react-native-permissions";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text } from "~/component/atoms/Text";
@@ -22,11 +24,15 @@ export const Home: React.FC = (props) => {
 	const theme = useThemeStyle();
 	const { t } = useTranslation();
 	useEffect(() => {
+		const platformPermissions = Platform.OS === "ios" ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA;
+		request(platformPermissions);
 		axiosMockInstance
 			.get("api/health_check")
 			.then((res) => res.data)
 			.then(setMockInfo)
 			.catch(setMockInfo);
+
+		getDeviceName().then(console.log);
 	}, []);
 
 	const value = useSharedValue(0);
@@ -54,7 +60,7 @@ export const Home: React.FC = (props) => {
 			<Animated.View style={[{ height: 80, backgroundColor: "black", margin: 30 }, animatedStyle]} />
 			<Button title='toggle' onPress={toggle} />
 			<Button title={"translate"} onPress={changeTranslate} />
-			<Text style={{ ...theme.fontFamily.Bold }}>{t("test", { name: "asdf" })}</Text>
+			<Text style={{ ...theme.fontFamily.Bold, color: "black" }}>{t("test", { name: "asdf" })}</Text>
 			{mockInfo && <Animated.Text style={{ ...theme.fontFamily.Bold }}>{JSON.stringify(mockInfo, null, "  ")}</Animated.Text>}
 		</SafeAreaView>
 	);
