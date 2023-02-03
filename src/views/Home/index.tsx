@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button } from "react-native";
+import { Button, Platform } from "react-native";
 import { getDeviceName } from "react-native-device-info";
+import { PERMISSIONS, request } from "react-native-permissions";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text } from "~/component/atoms/Text";
@@ -23,6 +24,8 @@ export const Home: React.FC = (props) => {
 	const theme = useThemeStyle();
 	const { t } = useTranslation();
 	useEffect(() => {
+		const platformPermissions = Platform.OS === "ios" ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA;
+		request(platformPermissions);
 		axiosMockInstance
 			.get("api/health_check")
 			.then((res) => res.data)

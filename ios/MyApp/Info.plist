@@ -65,5 +65,48 @@
 		<string>Pretendard-SemiBold.otf</string>
 		<string>Pretendard-Thin.otf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+  <string>Need to Camera</string>
+  <!-- <key>NSAppleMusicUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSBluetoothAlwaysUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSBluetoothPeripheralUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSCalendarsUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSCameraUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSContactsUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSFaceIDUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSLocationTemporaryUsageDescriptionDictionary</key>
+  <dict>
+    <key>YOUR-PURPOSE-KEY</key>
+    <string>YOUR TEXT</string>
+  </dict>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSMotionUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSRemindersUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSSpeechRecognitionUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSSiriUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSUserTrackingUsageDescription</key>
+  <string>YOUR TEXT</string> -->
 </dict>
 </plist>
