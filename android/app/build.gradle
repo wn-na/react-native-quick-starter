@@ -11,6 +11,9 @@ import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
+if (project.env.get("USE_FIREBASE") == "true") {
+    apply plugin: 'com.google.gms.google-services' 
+}
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -226,6 +229,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
@@ -240,7 +251,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_KEY")
@@ -269,6 +280,11 @@ dependencies {
 
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+
+    if (project.env.get("USE_FIREBASE") == "true") {
+        implementation platform('com.google.firebase:firebase-bom:31.2.0')
+        implementation 'com.google.firebase:firebase-analytics'
+    } 
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 

@@ -67,3 +67,7 @@ ios/tmp.xcconfig
 
 /env/.env.*
 !/env/.env.default
+
+# firebase
+**/google-services.json
+**/GoogleService-Info.plist

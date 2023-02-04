@@ -12,6 +12,10 @@
 					{
 						"rootPathPrefix": "@translation",
 						"rootPathSuffix": "translation"
+					},
+					{
+						"rootPathPrefix": "@utils",
+						"rootPathSuffix": "src/utils"
 					}
 				]
 			}

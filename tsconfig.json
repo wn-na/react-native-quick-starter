@@ -16,6 +16,7 @@
 		"baseUrl": "./",
 		"paths": {
 			"@translation/*": ["translation/*"],
+			"@utils/*": ["src/utils/*"],
 			"~/*": ["src/*"]
 		},
 		"typeRoots": ["node_modules/@types"]
