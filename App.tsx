@@ -6,6 +6,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Fcm } from "@utils/push/firebaseCloudMessage";
 import { LocalNotification } from "@utils/push/localNotification";
 import Config from "react-native-config";
+import SplashScreen from "react-native-splash-screen";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
@@ -25,6 +26,9 @@ const App = () => {
 		Appearance.addChangeListener(({ colorScheme }) => {
 			setAppTheme(Appearance.getColorScheme() === "dark" ? "dark" : "light");
 		});
+		setTimeout(() => {
+			SplashScreen.hide();
+		}, 2000);
 	}, []);
 
 	useEffect(() => {

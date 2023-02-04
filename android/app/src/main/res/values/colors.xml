@@ -1,4 +1,5 @@
 <resources>
     <color name="white">#FFF</color>
     <color name="dark">#000</color>
+    <color name="primary_dark">#000000</color>
 </resources>
