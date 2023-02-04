@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply plugin: 'com.google.gms.google-services' 
 
 project.ext.envConfigFiles = [
     debug: "env/.env.debug",
@@ -12,6 +11,9 @@ import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
+if (project.env.get("USE_FIREBASE") == "true") {
+    apply plugin: 'com.google.gms.google-services' 
+}
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -278,7 +280,12 @@ dependencies {
 
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation 'com.google.firebase:firebase-analytics'
+
+    if (project.env.get("USE_FIREBASE") == "true") {
+        implementation platform('com.google.firebase:firebase-bom:31.2.0')
+        implementation 'com.google.firebase:firebase-analytics'
+    } 
+
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

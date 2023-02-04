@@ -5,12 +5,12 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Fcm } from "@utils/push/firebaseCloudMessage";
 import { LocalNotification } from "@utils/push/localNotification";
+import Config from "react-native-config";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import { MainStackNavigation } from "~/navigation/mainStack";
 import theme from "~/styles/theme";
-import Config from "./Config";
 
 const App = () => {
 	const [appTheme, setAppTheme] = useState<keyof typeof theme>("light");
@@ -28,8 +28,12 @@ const App = () => {
 	}, []);
 
 	useEffect(() => {
-		Fcm.register(onRegister, onNotification, onOpenNotification);
-		LocalNotification.configure(console.log);
+		if (Config.USE_PUSH == "true") {
+			if (Config.USE_FIREBASE == "true") {
+				Fcm.register(onRegister, onNotification, onOpenNotification);
+			}
+			LocalNotification.configure(console.log);
+		}
 	}, []);
 
 	const onRegister = (token: string) => {
@@ -71,4 +75,4 @@ const codePushOptions = {
 	installMode: CodePush.InstallMode.IMMEDIATE
 };
 
-export default Config.codepush ? CodePush(codePushOptions)(App) : App;
+export default Config.USE_CODEPUSH == "true" ? CodePush(codePushOptions)(App) : App;
