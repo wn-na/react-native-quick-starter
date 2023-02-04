@@ -42,12 +42,12 @@ FOLDER_ROOT=$(echo $ANDROID_PACKAGE_NAME | sed "s/\./\//g")
 echo ">> change android main folder";
 mkdir -p $PROJECT_HOME/android/app/src/main/java/$FOLDER_ROOT 
 mv -- $PROJECT_HOME/android/app/src/main/java/com/myapp/* $PROJECT_HOME/android/app/src/main/java/$FOLDER_ROOT 
-rm -rf $PROJECT_HOME/android/app/src/main/java/com/myapp
+# rm -rf $PROJECT_HOME/android/app/src/main/java/com/myapp
 
 echo ">> change android debug folder";
 mkdir -p $PROJECT_HOME/android/app/src/debug/java/$FOLDER_ROOT 
 mv -- $PROJECT_HOME/android/app/src/debug/java/com/myapp/* $PROJECT_HOME/android/app/src/debug/java/$FOLDER_ROOT 
-rm -rf $PROJECT_HOME/android/app/src/debug/java/com/myapp
+# rm -rf $PROJECT_HOME/android/app/src/debug/java/com/myapp
 
 echo ">> change android package name";
 find $PROJECT_HOME/android -type f | xargs perl -pi -e "s/com.myapp/$ANDROID_PACKAGE_NAME/g"

@@ -1,3 +1,4 @@
 <resources>
     <color name="white">#FFF</color>
+    <color name="dark">#000</color>
 </resources>
