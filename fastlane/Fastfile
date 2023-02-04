@@ -1,0 +1,57 @@
+platform :ios do |options|
+  desc "ios ipa build script"
+  lane :build do |options|
+    clear_derived_data
+
+    match(type: ENV['IOS_MATCH_TYPE'], force_for_new_devices: true)
+
+    gym(
+        configuration: 'Release',
+        clean: true,
+        scheme: ENV['IOS_SCHEME'],
+        project: ENV['IOS_PROJECT'], 
+        output_name: ENV['IOS_IPA_NAME'],
+        output_directory: ENV['IOS_OUT_DIRECTORY'],
+        export_method: ENV['IOS_EXPORT_TYPE'],
+        export_options: {
+            iCloudContainerEnvironment: 'Development'
+        }
+    )
+
+    aws_s3(
+      access_key: ENV['S3_ACCESS_KEY'],
+      secret_access_key: ENV['S3_SECRET_ACCESS_KEY'],
+      bucket: ENV['S3_BUCKET'],
+      region: ENV['S3_REGION'],
+      path: "#{options[:timestamp].downcase.tr(" ", "_")}/ios/",
+      ipa: "#{ENV['IOS_OUT_DIRECTORY']}/#{ENV['IOS_IPA_NAME']}",
+      upload_metadata: true,
+      skip_html_upload: true,
+      version_in_folder: false,
+      version_in_root: false
+    )
+  end
+end
+
+
+platform :android do |options|
+  desc "android apk build script"
+  lane :build do |options|
+    gradle(task: "clean assembleRelease", project_dir: ENV['ANDROID_PROJECT_DIR'])
+
+    aws_s3(
+      access_key: ENV['S3_ACCESS_KEY'],
+      secret_access_key: ENV['S3_SECRET_ACCESS_KEY'],
+      bucket: ENV['S3_BUCKET'],
+      region: ENV['S3_REGION'],
+      path: "#{options[:timestamp].downcase.tr(" ", "_")}/android/",
+      files: [
+        'android/app/build/outputs/apk/release/app-release.apk',
+      ],
+      upload_metadata: true,
+      skip_html_upload: true,
+      version_in_folder: false,
+      version_in_root: false
+    )
+  end
+end

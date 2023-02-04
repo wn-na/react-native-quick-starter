@@ -1,0 +1,5 @@
+json_key_file("")
+package_name(ENV['ANDROID_PACKAGE_NAME'])
+
+app_identifier(ENV['IOS_APP_IDENTIFIER'].split(','))
+# username(ENV['IOS_DEVELOPER_ID'])
