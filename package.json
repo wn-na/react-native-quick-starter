@@ -19,7 +19,10 @@
 		"build:android-debug": "cd android && ./gradlew assembleDebug",
 		"build:android-release": "cd android && ./gradlew assembleRelease",
 		"ios-install": "cd ios && pod install",
-		"ios-install:m1": "cd ios && arch -x86_64 pod install"
+		"ios-install:m1": "cd ios && arch -x86_64 pod install",
+		"fastlane": "./bash/deploy.sh",
+		"fastlane:install-plugin": "fastlane install_plugins",
+		"init": "./bash/init.sh"
 	},
 	"dependencies": {
 		"@react-native-community/masked-view": "^0.1.11",

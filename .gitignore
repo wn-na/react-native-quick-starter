@@ -71,3 +71,10 @@ ios/tmp.xcconfig
 # firebase
 **/google-services.json
 **/GoogleService-Info.plist
+
+# fastlane
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+/fastlane/.env
+/fastlane/Readme.md

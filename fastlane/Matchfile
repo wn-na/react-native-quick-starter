@@ -1,0 +1,8 @@
+git_url(ENV['IOS_MATCH_GIT'])
+
+storage_mode("git")
+
+type("adhoc") # The default type, can be: appstore, adhoc, enterprise or development
+
+app_identifier(ENV['IOS_APP_IDENTIFIER'].split(','))
+username(ENV['IOS_DEVELOPER_ID'])
