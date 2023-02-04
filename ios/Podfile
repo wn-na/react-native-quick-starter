@@ -1,12 +1,16 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
+$FirebaseSDKVersion = '10.4.0'
+$RNFirebaseAsStaticFramework = true
 platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'MyApp' do
   config = use_native_modules!
-
+  
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'FirebaseCore', :modular_headers => true
   # Flags change depending on the env values.
   flags = get_default_flags()
 
@@ -57,7 +61,7 @@ target 'MyApp' do
     'Debug' => '$(PODS_ROOT)/../../env/.env.debug',
     'Release' => '$(PODS_ROOT)/../../env/.env.release',
   }
-
+  
   post_install do |installer|
     react_native_post_install(
       installer,

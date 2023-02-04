@@ -60,5 +60,6 @@ echo ">> change ios bundle id";
 sed -ri '' "s/IOS_BUNDLE_ID/$IOS_BUNDLE_ID/g" $PROJECT_HOME/ios/MyApp/Info.plist
 echo ">> change ios application name";
 find $PROJECT_HOME/ios -type f | xargs perl -pi -e "s/MyApp/$APPLICATION_NAME/g"
-find $PROJECT_HOME/ios -name "MyApp*" -exec rename -- "s/MyApp/$APPLICATION_NAME/g" {} \;
+find $PROJECT_HOME/ios -name "MyApp*" -exec rename -- "s/MyApp/$APPLICATION_NAME/g" {} \; 
+find $PROJECT_HOME/ios -name "*.pbxproj" |xargs perl -pi -e "s/org\.reactjs\.native\.example\..\(PRODUCT_NAME:rfc1034identifier\)/com.test.com/g" 
 echo ">> done";

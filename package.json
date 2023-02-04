@@ -13,10 +13,13 @@
 		"codepush:release:momentary": "appcenter codepush release-react -a {user name}/{app name} -d Production -m",
 		"codepush:debug:momentary": "appcenter codepush release-react -a {user name}/{app name} -d Debug -m",
 		"android:release": "npx react-native run-android --variant=release",
-		"clean": "rm -rf node_modules; rm -rf ios/build; rm -rf ios/Pods; rm -rf ios/Podfile.lock",
+		"clean": "rm -rf node_modules",
 		"clean:android": "cd android && ./gradlew clean",
+		"clean:ios": "rm -rf ios/build; rm -rf ios/Pods; rm -rf ios/Podfile.lock",
 		"build:android-debug": "cd android && ./gradlew assembleDebug",
-		"build:android-release": "cd android && ./gradlew assembleRelease"
+		"build:android-release": "cd android && ./gradlew assembleRelease",
+		"ios-install": "cd ios && pod install",
+		"ios-install:m1": "cd ios && arch -x86_64 pod install"
 	},
 	"dependencies": {
 		"@react-native-community/masked-view": "^0.1.11",

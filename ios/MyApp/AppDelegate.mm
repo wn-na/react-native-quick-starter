@@ -1,6 +1,10 @@
 #import "AppDelegate.h"
 #import <Firebase.h>
 #import <CodePush/CodePush.h>
+#import "RNCConfig.h"
+
+#import <UserNotifications/UserNotifications.h>
+#import "RNCPushNotificationIOS.h"
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
@@ -21,9 +25,6 @@
 
 #import <react/config/ReactNativeConfig.h>
 
-#import <UserNotifications/UserNotifications.h>
-#import <RNCPushNotificationIOS.h>
-
 static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
 @interface AppDelegate () <RCTCxxBridgeDelegate, RCTTurboModuleManagerDelegate> {
@@ -40,10 +41,14 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   RCTAppSetupPrepareApp(application);
+  NSString *USE_FIREBASE = [RNCConfig envFor:@"USE_FIREBASE"];
 
-  if ([FIRApp defaultApp] == nil) {
-    [FIRApp configure];
+  if ([@"true" isEqualToString:USE_FIREBASE]) {
+    if ([FIRApp defaultApp] == nil) {
+      [FIRApp configure];
+    }
   }
+  
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
 
 #if RCT_NEW_ARCH_ENABLED
