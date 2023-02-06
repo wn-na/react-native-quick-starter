@@ -45,9 +45,7 @@ export type AxiosConfig<M extends HttpMethod, U extends RequestURL<M>> = M exten
  * @description change this interface for your api response format
  */
 export type Response<M extends HttpMethod, U extends RequestURL<M>> = {
-	data: {
-		response: RequestResponse<M, U>;
-	};
+	data: RequestResponse<M, U>;
 };
 
 interface CustomRequestInstance {
