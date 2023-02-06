@@ -1,50 +1,38 @@
-export const lightColors = {
+import { ColorPaletteKeys, ColorUtils } from "@utils/colors";
+
+const defaultLightColors = {
 	black: "#000000",
 	white: "#FFFFFF",
-	error: "",
-	warning: "",
-	success: "",
-	info: "",
-	primary: "",
-	secondary: "",
-	gray: ""
+	primary: "#90caf9",
+	error: "#f44336",
+	warning: "#ffa726",
+	success: "#66bb6a",
+	info: "#29b6f6",
+	secondary: "#ce93d8",
+	gray: "#CDCDCD"
 };
 
+export const lightColors = Object.entries(defaultLightColors).reduce(
+	(acc, [key, value]) => ({ ...acc, ...ColorUtils.colorPalette(key, value) }),
+	{} as Record<ColorPaletteKeys<keyof typeof defaultLightColors>, string>
+);
+
+export type BasicAppColors = keyof typeof defaultLightColors;
 export type AppColors = keyof typeof lightColors;
-export const darkColors: Record<AppColors, any> = {
-	black: "#000000",
-	white: "#FFFFFF"
+
+export const defaultDarkColors: Record<BasicAppColors, any> = {
+	black: "#FFFFFF",
+	white: "#000000",
+	primary: "#90caf9",
+	error: "#f44336",
+	warning: "#ffa726",
+	success: "#66bb6a",
+	info: "#29b6f6",
+	secondary: "#ce93d8",
+	gray: "#CDCDCD"
 };
 
-const setOpacity = (hex: string, alpha: number) =>
-	`${hex}${Math.floor(alpha * 255)
-		.toString(16)
-		.padStart(2, "0")}`;
-
-const setDisabled = (hex?: string) => {
-	if (hex) {
-		return setOpacity(hex, 0.3);
-	}
-	return undefined;
-};
-
-const setHover = (hex?: string) => {
-	if (hex) {
-		return setOpacity(hex, 0.7);
-	}
-	return undefined;
-};
-
-const setPressed = (hex?: string) => {
-	if (hex) {
-		return setOpacity(hex, 0.5);
-	}
-	return undefined;
-};
-
-export const ColorUtils = {
-	setOpacity,
-	setDisabled,
-	setHover,
-	setPressed
-};
+export const darkColors = Object.entries(defaultDarkColors).reduce(
+	(acc, [key, value]) => ({ ...acc, ...ColorUtils.colorPalette(key, value) }),
+	{} as Record<ColorPaletteKeys<keyof typeof defaultLightColors>, string>
+);
