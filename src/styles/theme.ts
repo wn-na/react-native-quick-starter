@@ -1,48 +1,30 @@
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 import { darkColors, lightColors } from "./colors";
-import { fontFamily } from "./font";
 
-type ThemeSize = "SM" | "MD" | "LG" | "XL";
-const fontSize: Record<ThemeSize, number> = {
-	SM: 12,
-	MD: 16,
-	LG: 20,
-	XL: 24
-};
-
-const padding: Record<ThemeSize, number> = {
-	SM: 8,
-	MD: 12,
-	LG: 16,
-	XL: 20
-};
-
-const margin: Record<ThemeSize, number> = {
-	SM: 8,
-	MD: 12,
-	LG: 16,
-	XL: 20
+type STYLE_KEY = "center" | "textCenter";
+const style: Record<STYLE_KEY, any> = {
+	center: {
+		justifyContent: "center",
+		alignContent: "center",
+		alignItems: "center"
+	},
+	textCenter: { textAlign: "center", textAlignVertical: "center" }
 };
 
 interface ThemeItem {
-	fontSize: typeof fontSize;
-	padding: typeof padding;
-	margin: typeof margin;
-	fontFamily: typeof fontFamily;
 	color: typeof lightColors;
+	style: typeof style;
+	isDarkMode: boolean;
 }
 
-const defaultTheme: Omit<ThemeItem, "color"> = {
-	fontSize,
-	padding,
-	margin,
-	fontFamily: fontFamily
+const defaultTheme: Omit<ThemeItem, "color" | "isDarkMode"> = {
+	style
 };
 
 const theme: Record<"light" | "dark", ThemeItem> = {
-	light: { ...defaultTheme, color: lightColors },
-	dark: { ...defaultTheme, color: darkColors }
+	light: { ...defaultTheme, color: lightColors, isDarkMode: false },
+	dark: { ...defaultTheme, color: darkColors, isDarkMode: true }
 };
 export default theme;
 

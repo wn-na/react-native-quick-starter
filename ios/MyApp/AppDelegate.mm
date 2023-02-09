@@ -2,7 +2,7 @@
 #import <Firebase.h>
 #import <CodePush/CodePush.h>
 #import "RNCConfig.h"
-
+#import <React/RCTLinkingManager.h>
 #import <UserNotifications/UserNotifications.h>
 #import "RNCPushNotificationIOS.h"
 
@@ -183,4 +183,10 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
   completionHandler(UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge);
 }
 
+- (BOOL)application:(UIApplication *)application
+   openURL:(NSURL *)url
+   options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
+}
 @end
