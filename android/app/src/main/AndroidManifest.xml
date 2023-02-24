@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.myapp">
+  package="com.myapp"
+  xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" /> 
@@ -73,6 +74,9 @@
         </intent-filter>
       </activity>
 
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/primary"
+            tools:replace="android:resource" />
         <!-- Change the value to true to enable pop-up for in foreground on receiving remote notifications (for prevent duplicating while showing local notifications set this to false) -->
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_foreground" android:value="false"/>
         <!-- Change the resource name to your App's accent color - or any other color you want -->
