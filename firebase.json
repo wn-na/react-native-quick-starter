@@ -2,7 +2,6 @@
 	"react-native": {
 		"analytics_auto_collection_enabled": false,
 		"messaging_auto_init_enabled": false,
-		"messaging_android_headless_task_timeout": 30000,
-		"messaging_android_notification_color": "@color/dark"
+		"messaging_android_headless_task_timeout": 30000
 	}
 }
