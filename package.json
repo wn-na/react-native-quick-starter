@@ -58,6 +58,7 @@
 		"react-native-screens": "^3.19.0",
 		"react-native-splash-screen": "^3.3.0",
 		"react-native-svg": "^13.8.0",
+		"react-native-svg-transformer": "^1.0.0",
 		"react-query": "^3.39.3",
 		"recoil": "^0.7.6",
 		"styled-components": "^5.3.6",
