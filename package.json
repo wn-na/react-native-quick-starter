@@ -22,7 +22,8 @@
 		"ios-install:m1": "cd ios && arch -x86_64 pod install",
 		"fastlane": "./bash/deploy.sh",
 		"fastlane:install-plugin": "fastlane install_plugins",
-		"init": "./bash/init.sh"
+		"init": "./bash/init.sh",
+		"init:fastlane": "./bash/init_fastlane.sh"
 	},
 	"dependencies": {
 		"@react-native-clipboard/clipboard": "^1.11.1",
