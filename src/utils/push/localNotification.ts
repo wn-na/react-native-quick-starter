@@ -1,7 +1,8 @@
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { Platform } from "react-native";
-import PushNotification from "react-native-push-notification";
+import PushNotification, { Importance } from "react-native-push-notification";
 
+import { name } from "~/../app.json";
 type LocalNotificationMessage = {
 	id: number;
 	data: Record<string, any> | any;
@@ -21,12 +22,26 @@ type LocalNotificationMessage = {
 
 export class LocalNotification {
 	static configure = (onNotification?: (notification: Record<string, any>) => void) => {
+		PushNotification.channelExists(name, (exists) => {
+			if (!exists) {
+				PushNotification.createChannel(
+					{
+						channelId: name,
+						channelName: name,
+						importance: Importance.HIGH
+					},
+					(created) => {
+						console.log(`[PushChannel] channel: ${created}`);
+					}
+				);
+			}
+		});
 		PushNotification.configure({
 			onRegister: (token) => {
-				console.log("[LocalNotification] onRegister", token);
+				console.log(`[LocalNotification=onRegister] token=${token}`);
 			},
 			onNotification: (notification) => {
-				console.log("[LocalNotification] onNotification", notification);
+				console.log(`[LocalNotification=onNotification] notification=${JSON.stringify(notification)}`);
 				if (!notification?.data || Object.keys(notification?.data)?.length == 0) {
 					return;
 				}
@@ -51,12 +66,13 @@ export class LocalNotification {
 	};
 
 	static sendLocalNotification = (message: LocalNotificationMessage) => {
-		console.log("[LocalNotification] sendLocalNotification: ", message);
+		console.log(`[LocalNotification=sendLocalNotification] message=${JSON.stringify(message)}`);
 		const defaultNotification = {
 			title: message?.data?.title || "",
 			message: message?.data?.body || "",
 			playSound: message?.options?.playSound || false,
-			soundName: message?.options?.soundName || "default"
+			soundName: message?.options?.soundName || "default",
+			channelId: name
 		};
 
 		if (Platform.OS == "android") {
@@ -109,7 +125,7 @@ export class LocalNotification {
 	};
 
 	static removeNotificationByID = (id: string) => {
-		console.log("[LocalNotification] removeNotificationByID: ", id);
+		console.log(`[LocalNotification=removeNotificationByID] id=${JSON.stringify(id)}`);
 		PushNotification.cancelLocalNotification(id);
 	};
 }

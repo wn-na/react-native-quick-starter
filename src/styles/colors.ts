@@ -1,4 +1,4 @@
-import { ColorPaletteKeys, ColorUtils } from "@utils/colors";
+import { ColorType, generateColorPalette } from "color-token";
 
 const defaultLightColors = {
 	black: "#000000",
@@ -13,8 +13,8 @@ const defaultLightColors = {
 };
 
 export const lightColors = Object.entries(defaultLightColors).reduce(
-	(acc, [key, value]) => ({ ...acc, ...ColorUtils.colorPalette(key, value) }),
-	{} as Record<ColorPaletteKeys<keyof typeof defaultLightColors>, string>
+	(acc, [key, value]) => ({ ...acc, ...generateColorPalette(key, value) }),
+	{} as Record<ColorType.ColorPaletteKeys<keyof typeof defaultLightColors>, string>
 );
 
 export type BasicAppColors = keyof typeof defaultLightColors;
@@ -33,6 +33,6 @@ export const defaultDarkColors: Record<BasicAppColors, any> = {
 };
 
 export const darkColors = Object.entries(defaultDarkColors).reduce(
-	(acc, [key, value]) => ({ ...acc, ...ColorUtils.colorPalette(key, value) }),
-	{} as Record<ColorPaletteKeys<keyof typeof defaultLightColors>, string>
+	(acc, [key, value]) => ({ ...acc, ...generateColorPalette(key, value) }),
+	{} as Record<ColorType.ColorPaletteKeys<keyof typeof defaultLightColors>, string>
 );

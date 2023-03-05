@@ -1,4 +1,5 @@
 import { Platform, TextStyle } from "react-native";
+import { AppColors } from "./colors";
 
 const FONT_WEIGHT = {
 	100: "Thin",
@@ -69,4 +70,11 @@ export const font = {
 	size: fontSize,
 	lineHeight: fontLineHeight,
 	weight: fontFamily
+};
+
+export type FontStyle = {
+	size?: FONT_SIZE;
+	lineHeight?: FONT_LINE_HEIGHT;
+	weight?: FONT_WEIGHT;
+	color?: AppColors;
 };
