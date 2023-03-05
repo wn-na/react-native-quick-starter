@@ -17,6 +17,9 @@
 		"paths": {
 			"@translation/*": ["translation/*"],
 			"@utils/*": ["src/utils/*"],
+			"@network/*": ["src/network/*"],
+			"@navigation/*": ["src/navigation/*"],
+			"@styles/*": ["src/styles/*"],
 			"~/*": ["src/*"]
 		},
 		"typeRoots": ["node_modules/@types"]

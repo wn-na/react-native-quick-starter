@@ -16,6 +16,18 @@
 					{
 						"rootPathPrefix": "@utils",
 						"rootPathSuffix": "src/utils"
+					},
+					{
+						"rootPathPrefix": "@network",
+						"rootPathSuffix": "src/network"
+					},
+					{
+						"rootPathPrefix": "@navigation",
+						"rootPathSuffix": "src/navigation"
+					},
+					{
+						"rootPathPrefix": "@styles",
+						"rootPathSuffix": "src/styles"
 					}
 				]
 			}
