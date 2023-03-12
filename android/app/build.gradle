@@ -11,6 +11,9 @@ import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+
 if (project.env.get("USE_FIREBASE") == "true") {
     apply plugin: 'com.google.gms.google-services' 
 }
