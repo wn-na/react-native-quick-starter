@@ -95,6 +95,7 @@ npm run ios-install
 - [x] react-native-splash-screen
 - [x] react-native-svg
 - [x] react-native-svg-transformer
+- [x] react-native-webview
 - [x] react-query
 - [x] recoil
 - [x] styled-components
