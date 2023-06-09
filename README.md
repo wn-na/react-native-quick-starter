@@ -99,3 +99,4 @@ npm run ios-install
 - [x] react-query
 - [x] recoil
 - [x] styled-components
+- [x] react-native-mmkv
