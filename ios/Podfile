@@ -60,7 +60,7 @@ target 'MyApp' do
   end
   ENVFILES = {
     'Debug' => '$(PODS_ROOT)/../../env/.env.debug',
-    'Release' => '$(PODS_ROOT)/../../env/.env.release',
+    'Release' => '$(PODS_ROOT)/../../env/.env.product',
   }
   
   post_install do |installer|

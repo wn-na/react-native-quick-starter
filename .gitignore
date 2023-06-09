@@ -78,3 +78,4 @@ ios/tmp.xcconfig
 */fastlane/screenshots
 /fastlane/.env
 /fastlane/Readme.md
+.env
