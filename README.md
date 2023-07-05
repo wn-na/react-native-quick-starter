@@ -62,6 +62,30 @@ npm run ios-install
     npm run build:android-release
     ```
 
+## How to set landscape mode
+
+1. `AndroidManifest.xml`
+
+```diff
+- android:screenOrientation="portrait"
++  android:screenOrientation="landscape"
+```
+
+2. `Info.plist`
+
+```diff
+-		<string>UIInterfaceOrientationPortrait</string>
++		<string>UIInterfaceOrientationLandscapeLeft</string>
++		<string>UIInterfaceOrientationLandscapeRight</string>
+```
+
+3. `src/navigation/route.tsx`
+
+```diff
+-		Orientation.lockToPortrait();
++		Orientation.lockToLandscape();
+```
+
 ---
 
 ## include library

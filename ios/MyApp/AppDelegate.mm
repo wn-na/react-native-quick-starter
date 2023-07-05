@@ -5,7 +5,7 @@
 #import <React/RCTLinkingManager.h>
 #import <UserNotifications/UserNotifications.h>
 #import "RNCPushNotificationIOS.h"
-
+#import "Orientation.h"
 #import "RNSplashScreen.h"  
 
 #import <React/RCTBridge.h>
@@ -82,6 +82,10 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   [self.window makeKeyAndVisible];
   [RNSplashScreen show]; 
   return YES;
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  return [Orientation getOrientation];
 }
 
 /// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.

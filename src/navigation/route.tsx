@@ -5,6 +5,7 @@ import { LocalNotification } from "@utils/push/localNotification";
 import React, { useEffect, useState } from "react";
 import { Appearance } from "react-native";
 import Config from "react-native-config";
+import Orientation from "react-native-orientation";
 import SplashScreen from "react-native-splash-screen";
 import { ThemeProvider } from "styled-components";
 
@@ -12,6 +13,7 @@ export const Route = () => {
 	const [appTheme, setAppTheme] = useState<keyof typeof theme>("light");
 
 	useEffect(() => {
+		Orientation.lockToPortrait();
 		Appearance.addChangeListener(({ colorScheme }) => {
 			setAppTheme(Appearance.getColorScheme() === "dark" ? "dark" : "light");
 		});
