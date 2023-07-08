@@ -20,7 +20,7 @@ echo "========================================";
 echo "
 # iOS
 IOS_SCHEME=$IOS_SCHEME
-IOS_PROJECT='ios/$IOS_SCHEME.xcodeproj'
+IOS_WORKSPACE='ios/$IOS_SCHEME.workspace'
 IOS_OUT_DIRECTORY='ios/out'
 IOS_IPA_NAME='$IOS_SCHEME.ipa'
 IOS_EXPORT_TYPE='ad-hoc'

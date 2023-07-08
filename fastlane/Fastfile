@@ -9,7 +9,7 @@ platform :ios do |options|
         configuration: 'Release',
         clean: true,
         scheme: ENV['IOS_SCHEME'],
-        project: ENV['IOS_PROJECT'], 
+        wrokspace: ENV['IOS_WORKSPACE'], 
         output_name: ENV['IOS_IPA_NAME'],
         output_directory: ENV['IOS_OUT_DIRECTORY'],
         export_method: ENV['IOS_EXPORT_TYPE'],
