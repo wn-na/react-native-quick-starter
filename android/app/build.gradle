@@ -149,7 +149,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.myapp"
+        applicationId project.env.get("ANDROID_PACKAGE_NAME")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -237,11 +237,13 @@ android {
         debug {
             signingConfig signingConfigs.baseKey
             resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_KEY")
+            resValue "string", "app_name", "${project.env.get("APPLICATION_DISPLAY_NAME")}_dev"
         }
         releaseStaging {
-          initWith release
-          resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_KEY")
-          matchingFallbacks = ['release']
+            initWith release
+            resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_KEY")
+            resValue "string", "app_name", "${project.env.get("APPLICATION_DISPLAY_NAME")}_staging"
+            matchingFallbacks = ['release']
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -250,9 +252,10 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_KEY")
+            resValue "string", "app_name", project.env.get("APPLICATION_DISPLAY_NAME")
         }
-    }
-
+    } 
+    
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
