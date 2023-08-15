@@ -3,7 +3,7 @@ platform :ios do |options|
   lane :build do |options|
     clear_derived_data
 
-    match(type: ENV['IOS_MATCH_TYPE'], force_for_new_devices: true)
+    match(type: ENV['IOS_MATCH_TYPE'], force_for_new_devices: true, readonly: is_ci)
 
     gym(
         configuration: 'Release',
